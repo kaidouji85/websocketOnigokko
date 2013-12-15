@@ -42,6 +42,7 @@ var server = http.createServer(app).listen(app.get('port'), function() {
 var game = function(spec, my) {
     var that = {};
     var inUserInfoArray = new Array();
+    var userInputs = {};
     
     /**
      * ルーム入室 
@@ -53,7 +54,19 @@ var game = function(spec, my) {
         if(inUserInfoArray.length == 2) {
             fn(null,inUserInfoArray);    
         }
-        
+    };
+    
+    /**
+     * コマンド入力 
+     * @param {Number} userId
+     * @param {input} input
+     */
+    that.input = function(userId,input,fn){
+        userInputs[userId] = input;
+        if(Object.keys(userInputs).length == 2) {
+            fn(null,{input:userInputs});
+            userInputs = {};
+        }
     };
     
     return that;
@@ -85,6 +98,24 @@ io.sockets.on('connection', function(socket) {
                 io.sockets.in(roomId).emit("startGame", data);
             }
         });
+    });
+    
+    //クライアントからの入力受付
+    socket.on("input", function(data) {
+        console.log("input : data");
+        console.log(data);
+        var roomId = data.roomId;
+        var userId = data.userId;
+        var input = data.input;
         
+        gameArray[roomId].input(userId,input,function(err,data){
+            if (err) {
+                throw err;
+            }
+
+            if (data!=null) {
+                io.sockets.in(roomId).emit("resp", data);
+            }
+        });
     });
 }); 
