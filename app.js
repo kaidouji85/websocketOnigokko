@@ -64,7 +64,7 @@ var game = function(spec, my) {
     that.input = function(userId,input,fn){
         userInputs[userId] = input;
         if(Object.keys(userInputs).length == 2) {
-            fn(null,{input:userInputs});
+            fn(null,{inputs:userInputs});
             userInputs = {};
         }
     };
