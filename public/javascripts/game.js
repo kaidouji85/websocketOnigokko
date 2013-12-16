@@ -3,7 +3,7 @@ enchant();
 
 //定数
 const MAX_PLAYER_NUM = 2;
-const SERVER_IP = "172.22.198.13";
+const SERVER_IP = "http://taketake-node.herokuapp.com/";
 
 //グローバル変数
 var socket;                     //socket.ioオブジェクトを格納するグローバル変数
