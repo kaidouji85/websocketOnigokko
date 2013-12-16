@@ -90,13 +90,7 @@ io.sockets.on('connection', function(socket) {
 
         socket.join(roomId);
         gameArray[roomId].join(userId, function(err, data) {
-            if (err) {
-                throw err;
-            }
-
-            if (data!=null) {
-                io.sockets.in(roomId).emit("startGame", data);
-            }
+        	io.sockets.in(roomId).emit("startGame", data);
         });
     });
     
@@ -109,13 +103,7 @@ io.sockets.on('connection', function(socket) {
         var input = data.input;
         
         gameArray[roomId].input(userId,input,function(err,data){
-            if (err) {
-                throw err;
-            }
-
-            if (data!=null) {
-                io.sockets.in(roomId).emit("resp", data);
-            }
+        	io.sockets.in(roomId).emit("resp", data);
         });
     });
 }); 

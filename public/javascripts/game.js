@@ -3,7 +3,7 @@ enchant();
 
 //定数
 const MAX_PLAYER_NUM = 2;
-const SERVER_IP = "localhost";
+const SERVER_IP = "172.22.198.13";
 
 //グローバル変数
 var socket;                     //socket.ioオブジェクトを格納するグローバル変数
@@ -24,7 +24,6 @@ window.onload = function() {
     });
     
     socket.on("resp",function(data){
-        console.log(data);
         inputs = data.inputs;
     });
     
@@ -39,7 +38,7 @@ window.onload = function() {
 function game(spec,my) {
     //コアオブジェクト生成
     core = new Core(320, 320);
-    core.fps = 30;
+    core.fps = 60;
 
     //画像ファイルの読み込み
     core.preload('/images/betty.png');
