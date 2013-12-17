@@ -82,12 +82,6 @@ for (var i = 0; i < MAX_ROOM; i++) {
 
 //socket.ioサーバ
 var io = require('socket.io').listen(server);
-
-io.configure(function () { 
-  io.set("transports", ["xhr-polling"]); 
-  io.set("polling duration", 10); 
-});
-
 io.sockets.on('connection', function(socket) {
     //入室
     socket.on("enterRoom", function(data) {
