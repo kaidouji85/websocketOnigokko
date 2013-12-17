@@ -3,7 +3,7 @@ enchant();
 
 //定数
 const MAX_PLAYER_NUM = 2;
-const SERVER_IP = "http://taketake-node.herokuapp.com/";
+const SERVER_IP = location.origin;
 
 //グローバル変数
 var socket;                     //socket.ioオブジェクトを格納するグローバル変数
@@ -15,7 +15,7 @@ var isSendInput = false;        //入力をサーバへ送信したかのフラ�
 
 // ページが読み込まれたときに実行される関数
 window.onload = function() {
-    socket = io.connect('http://'+SERVER_IP);
+    socket = io.connect(SERVER_IP);
     roomId = $("#roomId").val();
     userId = $("#userId").val();
     
