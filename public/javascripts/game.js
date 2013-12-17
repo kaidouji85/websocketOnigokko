@@ -38,7 +38,7 @@ window.onload = function() {
 function game(spec,my) {
     //コアオブジェクト生成
     core = new Core(320, 320);
-    core.fps = 60;
+    core.fps = 15;
 
     //画像ファイルの読み込み
     core.preload('/images/betty.png');
