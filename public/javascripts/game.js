@@ -12,6 +12,7 @@ var userId;                     //ユーザID
 var inputs = null;              //全ユーザの入力情報
 var core;                       //enchant.js coreオブジェクト
 var isSendInput = false;        //入力をサーバへ送信したかのフラグ  true:送信 false:未送信
+var frame = 0;					
 
 // ページが読み込まれたときに実行される関数
 window.onload = function() {
@@ -72,12 +73,17 @@ function game(spec,my) {
                 return;
             }
             
+            frame　++;
+            
             //プレイヤーの挙動
             runPlayer();
             
             //入力情報送信フラグ、サーバからの入力情報を初期化する
-            isSendInput = false;
-            inputs = null;
+            if(frame>8){
+            	isSendInput = false;
+            	inputs = null;
+            	frame=0;
+            }
         });
         
         /**
